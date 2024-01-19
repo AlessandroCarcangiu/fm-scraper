@@ -1,0 +1,9 @@
+/.idea/
+/build/
+/dist/
+/__pycache/
+test.py
+test2.py
+/installer2.cfg
+/installer3.cfg
+*.pyc
