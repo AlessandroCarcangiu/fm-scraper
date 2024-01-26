@@ -1,5 +1,3 @@
-from queue import Queue
-from multiprocessing import Manager, Queue
 
 
 # custom signals
@@ -21,7 +19,7 @@ MODAL_MESSAGE_LOG_TAG = "modal_log"
 BUTTON_MODAL_EXIT_TAG = "log_exit_button"
 
 # queue
-MESSAGE_QUEUE = None# = Queue()
+MESSAGE_QUEUE = None
 def set_queue(q):
     global MESSAGE_QUEUE
     MESSAGE_QUEUE = q

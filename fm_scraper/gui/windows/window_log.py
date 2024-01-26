@@ -5,7 +5,6 @@ from threading import Thread
 from fm_scraper.gui.components import Modal
 from fm_scraper.gui.settings import (
     BUTTON_MODAL_EXIT_TAG,
-    #MESSAGE_QUEUE,
     MESSAGE_LOG_TEXT_TAG,
     MODAL_MESSAGE_LOG_TAG,
     SIGNAL_SCRAPING_COMPLETED,
@@ -67,12 +66,13 @@ class WindowLog(Modal):
 
     def __read_queue(self) -> None:
         text = ""
-        while not self.queue.empty():
-            mes = self.queue.get()
-            if mes:
-                text += str(mes)
-        if text:
-            self.__update_log(text)
+        if self.queue:
+            while not self.queue.empty():
+                mes = self.queue.get()
+                if mes:
+                    text += str(mes)
+            if text:
+                self.__update_log(text)
 
     def __end_logging(self, *args, **kwargs) -> None:
         self.__read_queue()

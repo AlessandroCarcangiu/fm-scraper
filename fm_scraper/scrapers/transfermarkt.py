@@ -17,7 +17,7 @@ class TransfermarktScraper(BaseScraper):
     __base_url = "https://www.transfermarkt.com"
     __format_date = "%b %d, %Y"
     __player_headers = {
-        "place of birth": "place_of_birth",
+        #"place of birth": "city",
         "citizenship": "citizenship"
     }
     __player_positions = {
@@ -201,6 +201,7 @@ class TransfermarktScraper(BaseScraper):
     @classmethod
     def __extract_player(cls, soup: Tag) -> pd.DataFrame:
         data = {
+            "entity": "Person",
             "type": "player"
         }
         # get data from header info

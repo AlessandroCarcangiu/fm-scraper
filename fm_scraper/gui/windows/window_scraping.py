@@ -4,7 +4,7 @@ import fm_scraper.scrapers as scrapers
 from pathlib import Path
 from pydispatch import dispatcher
 from fm_scraper.core.utilities import ClassUtilities
-from fm_scraper.gui.components import Modal, ModalMessage
+from fm_scraper.gui.components import Modal
 from fm_scraper.gui.settings import (
     MESSAGE_QUEUE,
     SIGNAL_SCRAPING_COMPLETED,
@@ -120,10 +120,6 @@ class WindowScraping(Modal):
         class_name = user_data["class"]
         method_name = user_data["method"]
         args = user_data["args"]
-
-        import time
-        time_start = time.time()
-
         from multiprocessing import Manager
         with Manager() as m:
             try:
@@ -142,8 +138,7 @@ class WindowScraping(Modal):
                 if DEBUG:
                     message += f" - {e}\n\n"
                     raise e
-                MESSAGE_QUEUE.put(message)
-            print(time.time()-time_start)
+                q.put(message)
             dispatcher.send(SIGNAL_SCRAPING_COMPLETED, cls, event=None)
 
     @classmethod

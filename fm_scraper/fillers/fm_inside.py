@@ -66,7 +66,8 @@ class FMInsideFiller(BaseFiller):
         if key and key.text.strip().lower() == "age":
             age = int(StringUtilities.extract_safe_text(item.find_next("span", attrs={"value"})))
             if age and "date_of_birth" in self.item and self.item["date_of_birth"]:
-                return age == DateUtilities.get_years_from_today(self.item["date_of_birth"])
+                true_age = DateUtilities.get_years_from_today(self.item["date_of_birth"])
+                return age in [true_age, true_age-1]
         return False
 
     # setters

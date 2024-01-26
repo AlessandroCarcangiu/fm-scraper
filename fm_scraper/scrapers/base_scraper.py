@@ -12,8 +12,6 @@ class BaseScraper(ABC, BaseRequest):
             print(text)
         if queue:
             queue.put(text)
-        if not queue:
-            print("porcoddio ladro")
 
     @staticmethod
     def _safe_extract_text(tag: Tag) -> str | None:
